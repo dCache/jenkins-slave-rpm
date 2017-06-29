@@ -1,0 +1,11 @@
+
+
+JENKINS_JAVA_OPTS=-Xmx4096m -server -Djava.awt.headless=true
+JENKINS_DESCRIPTION=Jenkins Swarm Slave
+JENKINS_EXECUTORS=2
+JENKINS_LABELS=wn CentOS7
+JENKINS_OPTS=-deleteExistingClients
+
+JENKINS_MASTER=
+JENKINS_USER=
+JENKINS_PASS=
