@@ -1,0 +1,23 @@
+[Unit]
+Description=Jenkins Swam Slave Daemon
+RequiresMountsFor=/var/lib/jenkins
+
+[Service]
+Type=simple
+User=jenkins
+Group=jenkins
+EnvironmentFile=/etc/sysconfig/jenkins-swarm-slave
+ExecStart=/bin/bash -c "/usr/bin/java ${JENKINS_JAVA_OPTS} \
+     -jar /usr/lib/jenkins-swarm-slave/swarm-client-2.2.jar \
+     -description \"${JENKINS_DESCRIPTION}\" \
+     -name %H \
+     -executors \"${JENKINS_EXECUTORS}\" \
+     -labels \"${JENKINS_LABELS}\" \
+     \"${JENKINS_OPTS}\" \
+     -fsroot /var/lib/jenkins \
+     -username ${JENKINS_USER} \
+     -password ${JENKINS_PASS} \
+     -master \"${JENKINS_MASTER}\""
+
+[Install]
+WantedBy=multi-user.target
